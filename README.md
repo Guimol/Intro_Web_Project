@@ -4,5 +4,4 @@
 
 # Best site for importing texts
 
-[Gutenberg Project](https://www.gutenberg.org/ebooks/search/?query=Machado+de+Assis&submit_search=Go%21)
-[text-to-highlight](https://www.gutenberg.org/ebooks/search/?query=Machado+de+Assis&submit_search=Go%21){:target="\_blank"}
+[Gutenberg Project](https://www.gutenberg.org/ebooks/search/?query=Machado+de+Assis&submit_search=Go%21){target=_blank}
