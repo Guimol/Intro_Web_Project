@@ -5,6 +5,7 @@
 # Best site for importing texts
 
 [Gutenberg Project](https://www.gutenberg.org/ebooks/search/?query=Machado+de+Assis&submit_search=Go%21)
+[link]([url](https://www.gutenberg.org/ebooks/search/?query=Machado+de+Assis&submit_search=Go%21)){:target="_blank"}
 <html><body>
 <a href="https://www.gutenberg.org/ebooks/search/?query=Machado+de+Assis&submit_search=Go%21" target="_blank">example</a>
 </body></html>
