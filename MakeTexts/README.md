@@ -1,1 +1,1 @@
-#Python source code for generating the texts
+# Python source code for generating the texts
