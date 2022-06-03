@@ -1,5 +1,7 @@
+from nltk.tokenize import word_tokenize
 from os.path import exists
 import requests
+import string
 import json
 
 if not exists('livro.txt'):
@@ -22,13 +24,9 @@ for capitulo in capitulos:
     
     count += 1
     
-from nltk.tokenize import word_tokenize
-
 for key in livro:
     words = word_tokenize(livro[key])
     new_words = [value for value in words if value not in ('--', '_', '-', '–', '<<', '>>', '«', '»')] #Tokens not to include in hard version
-    #new_words = [value for value in words if value not in ('--', '_', '-', '–', '``', '\'\'')] Tokens not to include in easy version
-    import string
     formattedText = ''
     flag = True
     for index, word in enumerate(new_words):
@@ -67,5 +65,5 @@ for index, key in enumerate(livro):
     json_data['book'][index]['text'] = livro[key]
 
 
-with open('QuincasBorbasShortHard.json', 'w', encoding='utf8') as json_file:
+with open('QuincasBorbas_Short_Hard.json', 'w', encoding='utf8') as json_file:
     json.dump(json_data, json_file, ensure_ascii=False)
