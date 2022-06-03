@@ -1,11 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import hard_json from '../assets/QuincasBorbas_Short_Hard.json';
 
 defineProps({
-  msg: String
-})
+  msg: String,
+});
 
-const count = ref(0)
+const count = ref(0);
 </script>
 
 <template>
@@ -27,6 +28,7 @@ const count = ref(0)
   </p>
 
   <button type="button" @click="count++">count is: {{ count }}</button>
+  <p>{{ hard_json.book[count].text }}</p>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
