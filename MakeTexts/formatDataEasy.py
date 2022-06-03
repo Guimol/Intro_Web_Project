@@ -1,5 +1,7 @@
+from nltk.tokenize import word_tokenize
 from os.path import exists
 import requests
+import string
 import json
 
 data = open('quincasborba.txt', "r", encoding = "utf-8")
@@ -17,12 +19,9 @@ for capitulo in capitulos:
     
     count += 1
     
-from nltk.tokenize import word_tokenize
-
 for key in livro:
     words = word_tokenize(livro[key])
     new_words = [value for value in words if value not in ('--', '_', '-', '–', '``', '\'\'')] Tokens not to include in easy version
-    import string
     formattedText = ''
     flag = True
     for index, word in enumerate(new_words):
