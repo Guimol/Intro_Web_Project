@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import easy_json from '../assets/QuincasBorbas_Short_Easy.json';
 import hard_json from '../assets/QuincasBorbas_Short_Hard.json';
 
 defineProps({
@@ -7,6 +8,21 @@ defineProps({
 });
 
 const count = ref(0);
+</script>
+
+<script>
+export default {
+  data() {
+    return {
+      list_tokens: [],
+    };
+  },
+  methods: {
+    iterate_counter() {
+      this.count = this.count + 1;
+    },
+  },
+};
 </script>
 
 <template>
@@ -27,7 +43,9 @@ const count = ref(0);
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
 
-  <button type="button" @click="count++">Next Chapter</button>
+  <button type="button" @click="iterate_counter()">
+    Next Chapter {{ count }}
+  </button>
   <p>{{ hard_json.book.title }}</p>
   <p>{{ hard_json.book[count].chapter }}</p>
   <p>{{ hard_json.book[count].text }}</p>
