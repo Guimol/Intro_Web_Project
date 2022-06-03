@@ -21,7 +21,7 @@ for capitulo in capitulos:
     
 for key in livro:
     words = word_tokenize(livro[key])
-    new_words = [value for value in words if value not in ('--', '_', '-', '–', '``', '\'\'')] Tokens not to include in easy version
+    new_words = [value for value in words if value not in ('--', '_', '-', '–', '``', '\'\'')] #Tokens not to include in easy version
     formattedText = ''
     flag = True
     for index, word in enumerate(new_words):
