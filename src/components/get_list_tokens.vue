@@ -62,6 +62,8 @@ export default {
 
     verify_text() {
       this.valid = this.input.trim() == this.array_10_tokens[0];
+      this.input = ''; //Limpar o input form
+      this.next_10_tokens_array();
     },
   },
   computed: {
@@ -97,7 +99,7 @@ export default {
     Next 10 token array
   </button>
   <p>{{ show_10_token_array }}</p>
-  <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado-->
+  <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado e limpar o input-->
   <input
     v-model="input"
     :placeholder="[[show_10_token_array]]"
