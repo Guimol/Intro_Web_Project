@@ -18,6 +18,7 @@ import AppHeader from './components/AppHeader.vue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #eff6e0;
+  background: #01161e;
 }
 </style>
