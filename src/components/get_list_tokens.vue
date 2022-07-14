@@ -16,6 +16,7 @@ export default {
     return {
       input: '',
       valid: false,
+      count_correct: 0,
       book: easy_json.book,
       list_tokens: [],
       difficult: false,
@@ -63,6 +64,9 @@ export default {
     verify_text() {
       this.valid = this.input.trim() == this.array_10_tokens[0];
       this.input = ''; //Limpar o input form
+      if (this.valid) {
+        this.count_correct++;
+      }
       this.next_10_tokens_array();
     },
   },
@@ -108,7 +112,7 @@ export default {
   <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
   <p>Source: {{ input }}</p>
   <p>Target: {{ array_10_tokens[0] }}</p>
-  <p>Computed: {{ this.input == this.array_10_tokens[0] }}</p>
+  <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
 </template>
 
 <style scoped>
