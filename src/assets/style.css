@@ -16,9 +16,13 @@ body {
   font-family: SpecialElite, 'Courier New', Courier, monospace;
 }
 
+footer {
+  background-color: #124559;
+}
+
 main {
   background-color: #124559;
-  max-width: 1000px;
+  /*max-width: 1000px;*/
   margin: auto;
 }
 
