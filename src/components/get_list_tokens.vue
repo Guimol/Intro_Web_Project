@@ -47,7 +47,6 @@ export default {
     },
 
     next_10_tokens_array() {
-      console.log(this.list_tokens.length);
       this.list_tokens = this.book[this.count].text.split(' ');
 
       if (this.array_10_tokens_index < this.list_tokens.length - 10) {
