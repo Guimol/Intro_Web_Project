@@ -92,7 +92,6 @@ export default {
     Next 10 token array
   </button>
   <p>{{ show_10_token_array }}</p>
-  <p>Indice {{ array_10_tokens_index }}</p>
 </template>
 
 <style scoped>
