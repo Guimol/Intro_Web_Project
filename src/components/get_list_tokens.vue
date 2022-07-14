@@ -14,70 +14,77 @@ const count = ref(0);
 export default {
   data() {
     return {
+      book: easy_json.book,
       list_tokens: [],
-      difficulty: 'Hard',
-      array: [],
-      array_index: 0,
+      difficult: false,
+      array_10_tokens: [],
+      array_10_tokens_index: 0,
     };
   },
   methods: {
-    iterate_counter() {
-      this.count = this.count + 1;
+    new_chapter() {
+      let random = Math.floor(
+        Math.random() * Object.keys(this.book).length - 1
+      );
+
+      while (random == this.count) {
+        random = Math.floor(Math.random() * Object.keys(this.book).length - 1);
+      }
+      this.count = random;
+
+      console.log(this.count);
+    },
+
+    change_difficulty() {
+      this.difficult = !this.difficult;
+      if (this.difficult) {
+        this.book = hard_json.book;
+      } else {
+        this.book = easy_json.book;
+      }
     },
   },
   computed: {
     nextList() {
-      if (this.array_index < this.list_tokens.length - 10) {
-        this.array = this.list_tokens.slice(
-          this.array_index,
-          this.array_index + 10
+      if (this.array_10_tokens_index < this.list_tokens.length - 10) {
+        this.array_10_tokens = this.list_tokens.slice(
+          this.array_10_tokens_index,
+          this.array_10_tokens_index + 10
         );
       }
-      this.array_index++;
+      this.array_10_tokens_index++;
     },
 
     showList() {
-      if (this.difficulty == 'Hard') {
-        this.list_tokens = hard_json.book[this.count].text.split(' ');
+      if (this.difficult) {
+        this.list_tokens = this.book[this.count].text.split(' ');
       } else {
-        this.list_tokens = easy_json.book[this.count].text.split(' ');
+        this.list_tokens = this.book[this.count].text.split(' ');
       }
 
       return this.list_tokens;
     },
+  },
+  beforeMount() {
+    this.new_chapter();
   },
 };
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
+  <p>{{ this.book.title }}</p>
+  <p>{{ this.book[this.count].chapter }}</p>
 
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="iterate_counter()">
-    Next Chapter {{ count }}
+  <button type="button" @click="new_chapter()">New Chapter</button>
+  <button type="button" @click="change_difficulty()">
+    Make it {{ difficult ? 'Easy' : 'Hard' }}
   </button>
-  <p>{{ hard_json.book.title }}</p>
-  <p>{{ hard_json.book[count].chapter }}</p>
-  <!--<p>{{ hard_json.book[count].text.split(' ') }}</p>-->
-  <p>{{ showList }}</p>
+
+  <p>{{ showList.join(' ') }}</p>
   <button type="button" @click="nextList">Next List</button>
-  <p>{{ array }}</p>
-  <p>Indice {{ array_index }}</p>
-  <button type="button" @click="count--">Previous Chapter</button>
+  <p>{{ array_10_tokens }}</p>
+  <p>Indice {{ array_10_tokens_index }}</p>
   <button type="button" @click="count = 0">Reset Chapter index</button>
   <!--TODO: Check last chapter-->
 </template>
