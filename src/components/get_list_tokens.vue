@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       input: '',
-      variable: 'Eu não fui mudada',
+      valid: false,
       book: easy_json.book,
       list_tokens: [],
       difficult: false,
@@ -60,8 +60,8 @@ export default {
       this.array_10_tokens_index++;
     },
 
-    minha_func() {
-      this.variable = 'Bla Bla Bla';
+    verify_text() {
+      this.valid = this.input.trim() == this.array_10_tokens[0];
     },
   },
   computed: {
@@ -97,13 +97,16 @@ export default {
     Next 10 token array
   </button>
   <p>{{ show_10_token_array }}</p>
+  <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado-->
   <input
     v-model="input"
     :placeholder="[[show_10_token_array]]"
-    v-on:keyup.space="minha_func"
+    v-on:keyup.space="verify_text"
   />
-  <p>Variavel: {{ variable }}</p>
-  <p>Escrito: {{ input }}</p>
+  <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
+  <p>Source: {{ input }}</p>
+  <p>Target: {{ array_10_tokens[0] }}</p>
+  <p>Computed: {{ this.input == this.array_10_tokens[0] }}</p>
 </template>
 
 <style scoped>
