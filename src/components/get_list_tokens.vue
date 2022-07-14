@@ -14,6 +14,8 @@ const count = ref(-1);
 export default {
   data() {
     return {
+      input: '',
+      variable: 'Eu não fui mudada',
       book: easy_json.book,
       list_tokens: [],
       difficult: false,
@@ -57,6 +59,10 @@ export default {
       }
       this.array_10_tokens_index++;
     },
+
+    minha_func() {
+      this.variable = 'Bla Bla Bla';
+    },
   },
   computed: {
     show_text() {
@@ -91,6 +97,13 @@ export default {
     Next 10 token array
   </button>
   <p>{{ show_10_token_array }}</p>
+  <input
+    v-model="input"
+    :placeholder="[[show_10_token_array]]"
+    v-on:keyup.space="minha_func"
+  />
+  <p>Variavel: {{ variable }}</p>
+  <p>Escrito: {{ input }}</p>
 </template>
 
 <style scoped>
