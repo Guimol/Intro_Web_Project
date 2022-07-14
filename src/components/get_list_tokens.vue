@@ -8,7 +8,6 @@ defineProps({
 });
 
 const count = ref(-1);
-
 </script>
 
 <script>
@@ -34,6 +33,7 @@ export default {
       while (random == this.count || random < 0) {
         random = Math.floor(Math.random() * Object.keys(this.book).length - 1);
       }
+      this.count_correct = 0;
       this.count = random;
       this.array_10_tokens_index = 0;
       this.next_10_tokens_array();
@@ -46,6 +46,7 @@ export default {
       } else {
         this.book = this.easy_json.book;
       }
+      this.count_correct = 0;
       this.array_10_tokens_index = 0;
       this.next_10_tokens_array();
     },
