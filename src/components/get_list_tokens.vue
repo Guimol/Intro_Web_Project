@@ -31,6 +31,8 @@ export default {
         random = Math.floor(Math.random() * Object.keys(this.book).length - 1);
       }
       this.count = random;
+      this.array_10_tokens_index = 0;
+      this.next_10_tokens_array();
     },
 
     change_difficulty() {
@@ -40,9 +42,14 @@ export default {
       } else {
         this.book = this.easy_json.book;
       }
+      this.array_10_tokens_index = 0;
+      this.next_10_tokens_array();
     },
 
-    nextList() {
+    next_10_tokens_array() {
+      console.log(this.list_tokens.length);
+      this.list_tokens = this.book[this.count].text.split(' ');
+
       if (this.array_10_tokens_index < this.list_tokens.length - 10) {
         this.array_10_tokens = this.list_tokens.slice(
           this.array_10_tokens_index,
@@ -54,7 +61,6 @@ export default {
   },
   computed: {
     show_text() {
-      this.list_tokens = this.book[this.count].text.split(' ');
       return this.list_tokens.join(' ');
     },
 
@@ -64,7 +70,9 @@ export default {
   },
   beforeMount() {
     this.new_chapter();
-    this.nextList();
+    this.array_10_tokens_index = 0;
+    this.list_tokens = this.book[this.count].text.split(' ');
+    this.next_10_tokens_array();
   },
 };
 </script>
@@ -80,7 +88,9 @@ export default {
   </button>
 
   <p>{{ show_text }}</p>
-  <button type="button" @click="nextList">Next 10 token array</button>
+  <button type="button" @click="next_10_tokens_array()">
+    Next 10 token array
+  </button>
   <p>{{ show_10_token_array }}</p>
   <p>Indice {{ array_10_tokens_index }}</p>
 </template>
