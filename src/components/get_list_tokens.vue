@@ -7,7 +7,7 @@ defineProps({
   msg: String,
 });
 
-const count = ref(0);
+const count = ref(-1);
 </script>
 
 <script>
@@ -27,24 +27,21 @@ export default {
         Math.random() * Object.keys(this.book).length - 1
       );
 
-      while (random == this.count) {
+      while (random == this.count || random < 0) {
         random = Math.floor(Math.random() * Object.keys(this.book).length - 1);
       }
       this.count = random;
-
-      console.log(this.count);
     },
 
     change_difficulty() {
       this.difficult = !this.difficult;
       if (this.difficult) {
-        this.book = hard_json.book;
+        this.book = this.hard_json.book;
       } else {
-        this.book = easy_json.book;
+        this.book = this.easy_json.book;
       }
     },
-  },
-  computed: {
+
     nextList() {
       if (this.array_10_tokens_index < this.list_tokens.length - 10) {
         this.array_10_tokens = this.list_tokens.slice(
@@ -54,19 +51,20 @@ export default {
       }
       this.array_10_tokens_index++;
     },
+  },
+  computed: {
+    show_text() {
+      this.list_tokens = this.book[this.count].text.split(' ');
+      return this.list_tokens.join(' ');
+    },
 
-    showList() {
-      if (this.difficult) {
-        this.list_tokens = this.book[this.count].text.split(' ');
-      } else {
-        this.list_tokens = this.book[this.count].text.split(' ');
-      }
-
-      return this.list_tokens;
+    show_10_token_array() {
+      return this.array_10_tokens.join(' ');
     },
   },
   beforeMount() {
     this.new_chapter();
+    this.nextList();
   },
 };
 </script>
@@ -81,12 +79,10 @@ export default {
     Make it {{ difficult ? 'Easy' : 'Hard' }}
   </button>
 
-  <p>{{ showList.join(' ') }}</p>
-  <button type="button" @click="nextList">Next List</button>
-  <p>{{ array_10_tokens }}</p>
+  <p>{{ show_text }}</p>
+  <button type="button" @click="nextList">Next 10 token array</button>
+  <p>{{ show_10_token_array }}</p>
   <p>Indice {{ array_10_tokens_index }}</p>
-  <button type="button" @click="count = 0">Reset Chapter index</button>
-  <!--TODO: Check last chapter-->
 </template>
 
 <style scoped>
