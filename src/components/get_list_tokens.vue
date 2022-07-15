@@ -113,7 +113,6 @@ export default {
 </script>
 
 <template>
-
   <div id="corpo" class="container-md pt-3 pb-5">
     <div id="descricao" class="border border-4 rounded m-5">
       <h2>Quão rápido você consegue digitar?</h2>
@@ -125,20 +124,6 @@ export default {
     </div>
 
     <p>{{ show_text }}</p>
-    
-    <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
-
-    <form class="row justify-content-center">
-      <div class="col-md-8 mb-3">
-        <input
-          type="text"
-          class="form-control"
-          v-model="input"
-          :placeholder="[[show_10_token_array]]"
-          v-on:keyup.space="verify_text"
-        />
-      </div>
-    </form>
 
     <button
       type="button"
@@ -154,17 +139,24 @@ export default {
     >
       Dificuldade {{ difficult ? 'Fácil' : 'Difícil' }}
     </button>
-    <button
-      type="button"
-      class="btn-dark border border-2"
-      @click="next_10_tokens_array()"
-    >
-      Próxima Linha
-    </button>
+
     <p>{{ show_10_token_array }}</p>
 
-    <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
-    
+    <form class="row justify-content-center">
+      <div class="col-md-8 mb-3">
+        <input
+          type="text"
+          class="form-control"
+          v-model="input"
+          :placeholder="[[show_10_token_array]]"
+          v-on:keyup.space="verify_text"
+        />
+      </div>
+    </form>
+
+    <p v-if="!end">{{ valid ? 'Acertou' : 'Errou' }}</p>
+    <p v-if="end">Resultados:</p>
+
     <p v-if="end">PPM {{ list_tokens.length / (elapsed / 60000) }}</p>
     <p v-if="end">Precisão {{ (count_correct / list_tokens.length) * 100 }}%</p>
     <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
