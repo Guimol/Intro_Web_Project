@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       input: '',
+      end: false,
       valid: false,
       count_correct: 0,
       book: easy_json.book,
@@ -59,8 +60,19 @@ export default {
           this.array_10_tokens_index,
           this.array_10_tokens_index + 10
         );
+      } else {
+        this.array_10_tokens = this.list_tokens.slice(
+          this.array_10_tokens_index,
+          this.array_10_tokens_index +
+            (this.list_tokens.length - this.array_10_tokens_index)
+        );
       }
-      this.array_10_tokens_index++;
+
+      if (this.array_10_tokens_index == this.list_tokens.length) {
+        this.end = true;
+      } else {
+        this.array_10_tokens_index++;
+      }
     },
 
     verify_text() {
@@ -101,9 +113,6 @@ export default {
   </button>
 
   <p>{{ show_text }}</p>
-  <button type="button" @click="next_10_tokens_array()">
-    Next 10 token array
-  </button>
   <p>{{ show_10_token_array }}</p>
   <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado e limpar o input-->
   <input
@@ -112,8 +121,6 @@ export default {
     v-on:keyup.space="verify_text"
   />
   <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
-  <p>Source: {{ input }}</p>
-  <p>Target: {{ array_10_tokens[0] }}</p>
   <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
 </template>
 
