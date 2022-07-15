@@ -2,9 +2,9 @@
 
 [Site da Disciplina](https://sites.google.com/usp.br/webdev)
 
-# vitejs-vite-dywn25
+# StackBlitz project (develop directly on the navigator)
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/fork/vitejs-vite-dywn25)
+[Fork your own version of the source code](https://stackblitz.com/fork/vitejs-vite-dywn25)
 
 # Best site for importing texts
 
