@@ -17,13 +17,17 @@ body {
 }
 
 footer {
-  background-color: #124559;
+  background-color: #598392;
 }
 
 main {
   background-color: #124559;
   /*max-width: 1000px;*/
   margin: auto;
+}
+
+#corpo {
+  background-color: #124559;
 }
 
 .icon {

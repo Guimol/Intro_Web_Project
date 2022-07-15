@@ -1,42 +1,23 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg navbar-dark"
-    style="background-color: #598392"
-  >
+  <nav class="navbar navbar-dark" style="background-color: #598392">
     <a
-      class="navbar-brand"
-      href="#"
+      class="nav navbar-brand flex column flex-sm-row p-3"
+      href="#top"
       style="font-family: SpecialElite, 'Courier New', Courier, monospace"
-    >
-      <img
-        src="/src/assets/chronometer.png"
-        width="30"
-        height="30"
-        class="d-inline-block align-top"
-        alt="Logo"
-      />
-      Dedos Ligeiros
+      >Dedos Ligeiros
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Teste de Digitação</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Quem Somos</a>
-        </li>
-      </ul>
-    </div>
+
+    <ul class="nav justify-content-end mx-2">
+      <li class="nav-item">
+        <a class="nav-link text-light border border-2 m-1" href="#top"
+          >Teste sua Velocidade</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light border border-2 m-1" href="#selfpromotion"
+          >Quem Somos</a
+        >
+      </li>
+    </ul>
   </nav>
 </template>
