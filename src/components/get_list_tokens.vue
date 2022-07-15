@@ -121,12 +121,14 @@ export default {
 
   <p>{{ show_text }}</p>
   <p>{{ show_10_token_array }}</p>
+
+  <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
   <input
     v-model="input"
     :placeholder="[[show_10_token_array]]"
     v-on:keyup.space="verify_text"
   />
-  <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
+
   <p v-if="end">PPM {{ list_tokens.length / (elapsed / 60000) }}</p>
   <p v-if="end">Precisão {{ (count_correct / list_tokens.length) * 100 }}%</p>
   <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
