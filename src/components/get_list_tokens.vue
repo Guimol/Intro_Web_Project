@@ -127,8 +127,8 @@ export default {
     v-on:keyup.space="verify_text"
   />
   <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
-  <p>PPM {{ list_tokens.length / (elapsed / 60000) }}</p>
-  <p>Precisão {{ (count_correct / list_tokens.length) * 100 }}%</p>
+  <p v-if="end">PPM {{ list_tokens.length / (elapsed / 60000) }}</p>
+  <p v-if="end">Precisão {{ (count_correct / list_tokens.length) * 100 }}%</p>
   <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
 </template>
 
