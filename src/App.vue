@@ -9,7 +9,7 @@ import AppFooter from './components/AppFooter.vue';
 <template>
   <app-header />
   <router-view />
-  <HelloWorld msg="Hello to Dedos Ligeiros" />
+  <HelloWorld />
   <app-footer />
 </template>
 

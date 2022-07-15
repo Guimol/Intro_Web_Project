@@ -8,7 +8,6 @@ defineProps({
 });
 
 const count = ref(-1);
-
 </script>
 
 <script>
@@ -90,30 +89,92 @@ export default {
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-  <p>{{ this.book.title }}</p>
-  <p>{{ this.book[this.count].chapter }}</p>
+  <div id="corpo" class="container-md mt-3 pt-3 pb-5">
+    <div id="descricao" class="border rounded m-5">
+      <h2>Quão rápido você consegue digitar?</h2>
+      <h4>Copie o texto mostrado na tela que nós te dizemos!</h4>
+      <p>
+        Texto extraído de {{ this.book.title }},
+        {{ this.book[this.count].chapter }}
+      </p>
+    </div>
 
-  <button type="button" @click="new_chapter()">New Chapter</button>
-  <button type="button" @click="change_difficulty()">
-    Make it {{ difficult ? 'Easy' : 'Hard' }}
-  </button>
+    <button
+      type="button"
+      class="btn-dark border border-2"
+      @click="new_chapter()"
+    >
+      New Chapter
+    </button>
+    <button
+      type="button"
+      class="btn-dark border border-2"
+      @click="change_difficulty()"
+    >
+      Make it {{ difficult ? 'Easy' : 'Hard' }}
+    </button>
 
-  <p>{{ show_text }}</p>
-  <button type="button" @click="next_10_tokens_array()">
-    Next 10 token array
-  </button>
-  <p>{{ show_10_token_array }}</p>
-  <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado e limpar o input-->
-  <input
-    v-model="input"
-    :placeholder="[[show_10_token_array]]"
-    v-on:keyup.space="verify_text"
-  />
-  <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
-  <p>Source: {{ input }}</p>
-  <p>Target: {{ array_10_tokens[0] }}</p>
-  <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
+    <p>{{ show_text }}</p>
+    <button
+      type="button"
+      class="btn-dark border border-2"
+      @click="next_10_tokens_array()"
+    >
+      Next 10 token array
+    </button>
+    <p>{{ show_10_token_array }}</p>
+    <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado e limpar o input-->
+    <input
+      v-model="input"
+      :placeholder="[[show_10_token_array]]"
+      v-on:keyup.space="verify_text"
+    />
+    <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
+    <p>Source: {{ input }}</p>
+    <p>Target: {{ array_10_tokens[0] }}</p>
+    <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
+
+    <div
+      id="selfpromotion"
+      class="card-deck row m-auto d-flex justify-content-center text-dark"
+    >
+      <div class="card col-md-3">
+        <img
+          class="card-img-top"
+          src="https://avatars.githubusercontent.com/u/36967571?v=4"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Milan Rufini</h5>
+          <p class="card-text">
+            Adora jogar Minecraft e fazer arte. Futuro cientista da computação.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <a href="mailto:rufini@usp.br">Contato</a>
+          </small>
+        </div>
+      </div>
+      <div class="card col-md-3">
+        <img
+          class="card-img-top"
+          src="https://avatars.githubusercontent.com/u/51828246?v=4"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Guilherme Martiniano</h5>
+          <p class="card-text">
+            Estudante de ciência da computação, gosta de jogar tênis e jogos
+            online.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <a href="mailto:guizera11@usp.br">Contato</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
