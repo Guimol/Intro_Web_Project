@@ -15,6 +15,9 @@ export default {
   data() {
     return {
       input: '',
+      end: false,
+      start: Date,
+      elapsed: Date,
       valid: false,
       count_correct: 0,
       book: easy_json.book,
@@ -25,6 +28,13 @@ export default {
     };
   },
   methods: {
+    reset() {
+      this.end = false;
+      this.count_correct = 0;
+      this.array_10_tokens_index = 0;
+      this.next_10_tokens_array();
+    },
+
     new_chapter() {
       let random = Math.floor(
         Math.random() * Object.keys(this.book).length - 1
@@ -34,8 +44,7 @@ export default {
         random = Math.floor(Math.random() * Object.keys(this.book).length - 1);
       }
       this.count = random;
-      this.array_10_tokens_index = 0;
-      this.next_10_tokens_array();
+      this.reset();
     },
 
     change_difficulty() {
@@ -45,11 +54,14 @@ export default {
       } else {
         this.book = this.easy_json.book;
       }
-      this.array_10_tokens_index = 0;
-      this.next_10_tokens_array();
+      this.reset();
     },
 
     next_10_tokens_array() {
+      if (this.array_10_tokens_index == 1) {
+        this.start = new Date();
+      }
+
       this.list_tokens = this.book[this.count].text.split(' ');
 
       if (this.array_10_tokens_index < this.list_tokens.length - 10) {
@@ -57,8 +69,20 @@ export default {
           this.array_10_tokens_index,
           this.array_10_tokens_index + 10
         );
+      } else {
+        this.array_10_tokens = this.list_tokens.slice(
+          this.array_10_tokens_index,
+          this.array_10_tokens_index +
+            (this.list_tokens.length - this.array_10_tokens_index)
+        );
       }
-      this.array_10_tokens_index++;
+
+      if (this.array_10_tokens_index == this.list_tokens.length) {
+        this.end = true;
+        this.elapsed = new Date() - this.start;
+      } else {
+        this.array_10_tokens_index++;
+      }
     },
 
     verify_text() {
@@ -89,6 +113,7 @@ export default {
 </script>
 
 <template>
+
   <div id="corpo" class="container-md pt-3 pb-5">
     <div id="descricao" class="border border-4 rounded m-5">
       <h2>Quão rápido você consegue digitar?</h2>
@@ -100,6 +125,8 @@ export default {
     </div>
 
     <p>{{ show_text }}</p>
+    
+    <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
 
     <form class="row justify-content-center">
       <div class="col-md-8 mb-3">
@@ -135,11 +162,11 @@ export default {
       Próxima Linha
     </button>
     <p>{{ show_10_token_array }}</p>
-    <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado e limpar o input-->
 
     <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
-    <p>Source: {{ input }}</p>
-    <p>Target: {{ array_10_tokens[0] }}</p>
+    
+    <p v-if="end">PPM {{ list_tokens.length / (elapsed / 60000) }}</p>
+    <p v-if="end">Precisão {{ (count_correct / list_tokens.length) * 100 }}%</p>
     <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
 
     <div
