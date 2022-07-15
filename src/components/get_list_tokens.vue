@@ -92,7 +92,7 @@ export default {
   <div id="corpo" class="container-md mt-3 pt-3 pb-5">
     <div id="descricao" class="border rounded m-5">
       <h2>Quão rápido você consegue digitar?</h2>
-      <h4>Copie o texto mostrado na tela que nós te dizemos!</h4>
+      <h4>Copie o texto mostrado na tela que te diremos!</h4>
       <p>
         Texto extraído de {{ this.book.title }},
         {{ this.book[this.count].chapter }}
@@ -140,7 +140,7 @@ export default {
     >
       <div class="card col-md-3">
         <img
-          class="card-img-top"
+          class="card-img-top mt-3"
           src="https://avatars.githubusercontent.com/u/36967571?v=4"
         />
         <div class="card-body">
@@ -155,9 +155,14 @@ export default {
           </small>
         </div>
       </div>
+
+      <div name="spacer" class="card col-md-3 invisible">
+        <p class="card-text">???</p>
+      </div>
+
       <div class="card col-md-3">
         <img
-          class="card-img-top"
+          class="card-img-top mt-3"
           src="https://avatars.githubusercontent.com/u/51828246?v=4"
         />
         <div class="card-body">
