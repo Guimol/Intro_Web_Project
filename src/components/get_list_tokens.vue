@@ -89,8 +89,8 @@ export default {
 </script>
 
 <template>
-  <div id="corpo" class="container-md mt-3 pt-3 pb-5">
-    <div id="descricao" class="border rounded m-5">
+  <div id="corpo" class="container-md pt-3 pb-5">
+    <div id="descricao" class="border border-4 rounded m-5">
       <h2>Quão rápido você consegue digitar?</h2>
       <h4>Copie o texto mostrado na tela que te diremos!</h4>
       <p>
@@ -99,36 +99,44 @@ export default {
       </p>
     </div>
 
+    <p>{{ show_text }}</p>
+
+    <form class="row justify-content-center">
+      <div class="col-md-8 mb-3">
+        <input
+          type="text"
+          class="form-control"
+          v-model="input"
+          :placeholder="[[show_10_token_array]]"
+          v-on:keyup.space="verify_text"
+        />
+      </div>
+    </form>
+
     <button
       type="button"
       class="btn-dark border border-2"
       @click="new_chapter()"
     >
-      New Chapter
+      Outro Capítulo
     </button>
     <button
       type="button"
       class="btn-dark border border-2"
       @click="change_difficulty()"
     >
-      Make it {{ difficult ? 'Easy' : 'Hard' }}
+      Dificuldade {{ difficult ? 'Fácil' : 'Difícil' }}
     </button>
-
-    <p>{{ show_text }}</p>
     <button
       type="button"
       class="btn-dark border border-2"
       @click="next_10_tokens_array()"
     >
-      Next 10 token array
+      Próxima Linha
     </button>
     <p>{{ show_10_token_array }}</p>
     <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado e limpar o input-->
-    <input
-      v-model="input"
-      :placeholder="[[show_10_token_array]]"
-      v-on:keyup.space="verify_text"
-    />
+
     <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
     <p>Source: {{ input }}</p>
     <p>Target: {{ array_10_tokens[0] }}</p>
@@ -138,6 +146,7 @@ export default {
       id="selfpromotion"
       class="card-deck row m-auto d-flex justify-content-center text-dark"
     >
+      <h2 style="color: #aec3b0">Quem Somos</h2>
       <div class="card col-md-3">
         <img
           class="card-img-top mt-3"
