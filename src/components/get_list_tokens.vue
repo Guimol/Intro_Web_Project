@@ -16,6 +16,8 @@ export default {
     return {
       input: '',
       end: false,
+      start: Date,
+      elapsed: Date,
       valid: false,
       count_correct: 0,
       book: easy_json.book,
@@ -53,6 +55,10 @@ export default {
     },
 
     next_10_tokens_array() {
+      if (this.array_10_tokens_index == 1) {
+        this.start = new Date();
+      }
+
       this.list_tokens = this.book[this.count].text.split(' ');
 
       if (this.array_10_tokens_index < this.list_tokens.length - 10) {
@@ -70,6 +76,7 @@ export default {
 
       if (this.array_10_tokens_index == this.list_tokens.length) {
         this.end = true;
+        this.elapsed = new Date() - this.start;
       } else {
         this.array_10_tokens_index++;
       }
@@ -114,13 +121,14 @@ export default {
 
   <p>{{ show_text }}</p>
   <p>{{ show_10_token_array }}</p>
-  <!-- Quero fazer que ao dar um espaço troque a palavra atual e sempre fique fazendo a computação de onde esta errado e limpar o input-->
   <input
     v-model="input"
     :placeholder="[[show_10_token_array]]"
     v-on:keyup.space="verify_text"
   />
   <p>{{ valid ? 'Acertou' : 'Errou' }}</p>
+  <p>PPM {{ list_tokens.length / (elapsed / 60000) }}</p>
+  <p>Precisão {{ (count_correct / list_tokens.length) * 100 }}%</p>
   <p>Acertos: {{ count_correct }}/{{ list_tokens.length }}</p>
 </template>
 
